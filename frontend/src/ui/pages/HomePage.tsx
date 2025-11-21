@@ -1,8 +1,40 @@
+import { useEffect, useState } from "react";
+import Card from "../components/Card";
+import SkeletonCard from "../components/SkeletonCard";
+import { HttpServiceRepository } from "../../infrastructure/httpServiceRepository";
+import { GetServices } from "../../application/getServices";
+
+type Service = {
+  titulo: string;
+  imagen: string;
+};
+
 export default function HomePage() {
+  const [data, setData] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const repo = new HttpServiceRepository();
+    const getServices = new GetServices(repo);
+
+    const loadData = async () => {
+      try {
+        const services = await getServices.getAll();
+        setData(services);
+      } catch (e) {
+        console.error({e});
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
+
   return (
     <>
       <section
-        className="relative w-full h-[30vh] bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[45vh] bg-cover bg-center flex items-center justify-center"
         style={{
           backgroundImage: "linear-gradient(to bottom, #E7E7E7, #FFFFFF)",
         }}
@@ -59,6 +91,24 @@ export default function HomePage() {
               contra la delincuencia, la corrupción e impunidad.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 className="text-3xl font-bold text-center mb-20 ">Servicios</h2>
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
+          {loading || data.length === 0 ? (
+            // Skeletons
+            <>
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </>
+          ) : (
+            data.map((item, idx) => (
+              <Card key={idx} titulo={item.titulo} imagen={item.imagen} />
+            ))
+          )}
         </div>
       </section>
     </>

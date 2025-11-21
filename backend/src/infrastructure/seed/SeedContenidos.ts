@@ -9,7 +9,7 @@ export async function seedContenidos() {
   const existing = await getUseCase.execute();
 
   if (existing.length > 0) {
-    console.log("Seed: contenidos ya existen, no se inserta nada.");
+    console.log("Seed: existe");
     return;
   }
 
@@ -42,5 +42,5 @@ export async function seedContenidos() {
     await createUseCase.execute(data);
   }
 
-  console.log("Seed: contenidos creados.");
+  console.log("Seed: creados.");
 }

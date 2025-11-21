@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import healthRoutes from "../routes/HealthRoutes";
 import contenidoRoutes from "../routes/ContenidoRoutes";
 import { sequelize } from "../orm/sequelize";
@@ -7,15 +8,14 @@ import { seedContenidos } from "../seed/SeedContenidos";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors({ origin: "*" }));
+
 app.use(express.json());
 
 app.use("/", healthRoutes);
 app.use("/contenidos", contenidoRoutes);
 
 sequelize.sync({ alter: true }).then(async () => {
-  console.log("SQLite listo");
-
-  // Ejecutar seed
   await seedContenidos();
 });
 

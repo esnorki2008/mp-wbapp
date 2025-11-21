@@ -17,10 +17,10 @@ export default function Navbar() {
           </li>
           <li>
             <a
-              href="/servicios"
+              href="https://www.mp.gob.gt/"
               className="text-gray-700 hover:text-[#00AEEF] transition-colors duration-200"
             >
-              Servicios
+              Sitio
             </a>
           </li>
         </ul>

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import ServicePage from "../pages/ServicePage";
 import Navbar from "../components/Navbar";
 
 export default function AppRouter() {
@@ -8,8 +7,7 @@ export default function AppRouter() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/servicios" element={<ServicePage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
