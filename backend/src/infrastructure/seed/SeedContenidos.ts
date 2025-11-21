@@ -22,11 +22,6 @@ export async function seedContenidos() {
       imagen: "https://www.mp.gob.gt/wp-content/uploads/2024/11/Delito-Cero.png"
     },
     {
-      titulo: "Asistencia Alerta Alba-Keneth",
-      cuerpo: "CONTENT",
-      imagen: "https://www.mp.gob.gt/wp-content/uploads/2024/11/Delito-Cero.png"
-    },
-    {
       titulo: "Asistencia Alerta Isabel-Claudina",
       cuerpo: "CONTENT",
       imagen: "https://www.mp.gob.gt/wp-content/uploads/2024/11/Logo_4-Alerta-Alba-Keneth.png"
